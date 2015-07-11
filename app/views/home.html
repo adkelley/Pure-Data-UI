@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Pure Data GUI</title>
+    <!— JQuery local —>
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    
+    <script src="../bower_components/jquery-ui/jquery-ui.js"></script>
+    <!— Bootstrap local —>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+
+    <script>
+      $(function() {
+
+      $( "#canvas" ).dblclick(function() {
+      alert( "Handler for .dblclick() called." );
+      });
+
+      var availableTags = [
+      "bang",
+      "dac~",
+      "osc~"
+      ];
+      $( "#tags" ).autocomplete({
+      source: availableTags,
+      position: {my: "left top", at: "left bottom"}
+      });
+      });
+    </script>
+  </head>
+</head>
+<body>
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Pure Data GUI</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">About</a></li>
+          <li class="active"><a href="#">Demo</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="header">
+    <div class="ui-widget">
+      <label for="tags">Tags: </label>
+      <input id="tags">
+    </div>
+  </div>
+
+  <canvas id="canvas" style="border:2px solid black;" width="500" height="500">
+  </canvas>
+
+  <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">Edit</a></li>
+          <li class="active"><a href="#">Play</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+</body>
+</html>

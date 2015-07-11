@@ -1,0 +1,21 @@
+{
+  "name": "PureDataGUI",
+  "version": "0.0.0",
+  "homepage": "https://github.com/adkelley/PureDataGUI",
+  "authors": [
+    "Alex Kelley <adkelley@users.noreply.github.com>"
+  ],
+  "description": "Web GUI for Pure Data patches",
+  "main": "app/index.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "jquery-ui": "~1.11.4"
+  }
+}

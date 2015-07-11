@@ -1,3 +1,9 @@
 # Directories
-./wireframes
-./reference
+wireframes
+reference
+node_modules
+bower_components
+docs
+
+# Environment
+.env
