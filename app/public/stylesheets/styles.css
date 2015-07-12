@@ -38,3 +38,33 @@ body{
 .tagLabel {
     color: #fff;
 }
+
+.object {
+    border: 1px solid #346789;
+    box-shadow: 2px 2px 19px #aaa;
+    -o-box-shadow: 2px 2px 19px #aaa;
+    -webkit-box-shadow: 2px 2px 19px #aaa;
+    -moz-box-shadow: 2px 2px 19px #aaa;
+    -moz-border-radius: 0.5em;
+    border-radius: 0.5em;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+    width: 80px;
+    height: 40px;
+    line-height: 40px;
+    cursor: pointer;
+    text-align: center;
+    z-index: 20;
+    position: relative;
+    top: 1em;
+    left: 36em;
+    background-color: #eeeeef;
+    color: black;
+    font-family: helvetica;
+    padding: 0.5em;
+    font-size: 0.9em;
+    -webkit-transition: -webkit-box-shadow 0.15s ease-in;
+    -moz-transition: -moz-box-shadow 0.15s ease-in;
+    -o-transition: -o-box-shadow 0.15s ease-in;
+    transition: box-shadow 0.15s ease-in;
+}
