@@ -30,3 +30,11 @@ body{
 .navbar-collapse{
    padding-left:0; 
 }
+
+.ui-widget {
+    margin-top: 10px;
+}
+
+.tagLabel {
+    color: #fff;
+}
