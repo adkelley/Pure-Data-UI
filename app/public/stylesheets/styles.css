@@ -2,25 +2,14 @@ body{
   margin-top: 50px;
 }
 
-.divide-nav{
-  height: 50px;
+.nav-divider{
+  height: 10px;
   background-color: #428bca;
-}
-
-.divide-text{
-    color:#fff;
-    line-height: 20px;
-    font-size:20px;
-    padding: 15px 0;
 }
 
 .affix {
   top: 50px;
   width:100%;
-}
-
-.filler{
-  min-height: 2000px;
 }
 
 .navbar-form {
@@ -39,7 +28,7 @@ body{
     color: #fff;
 }
 
-.object {
+.ui-autocomplete-input {
     border: 1px solid #346789;
     box-shadow: 2px 2px 19px #aaa;
     -o-box-shadow: 2px 2px 19px #aaa;
@@ -50,12 +39,12 @@ body{
     opacity: 0.8;
     filter: alpha(opacity=80);
     width: 80px;
-    height: 40px;
-    line-height: 40px;
+    height: 30px;
+    line-height: 30px;
     cursor: pointer;
     text-align: center;
     z-index: 20;
-    position: relative;
+    position: absolute;
     top: 1em;
     left: 36em;
     background-color: #eeeeef;
@@ -67,4 +56,9 @@ body{
     -moz-transition: -moz-box-shadow 0.15s ease-in;
     -o-transition: -o-box-shadow 0.15s ease-in;
     transition: box-shadow 0.15s ease-in;
+}
+
+
+#pdCanvas {
+    position: relative;
 }

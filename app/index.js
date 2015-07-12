@@ -11,12 +11,8 @@ app.use(express.static("app/bower_components"));
 var views = path.join(process.cwd(), "app/public/views");
 
 app.get('/', function(req, res) {
-  var homePath = path.join(views, "newtest.html");
+  var homePath = path.join(views, "index.html");
   res.sendFile(homePath);
-});
-
-app.get('#new', function(req, res) {
-  res.send("Got the new request");
 });
 
 var server = app.listen(3000, function() {
