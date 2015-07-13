@@ -11,8 +11,8 @@ While there have been several desk top implementations of the Pure Data develope
 
 WebPd is a WebAudio implementation that allows users to run Pure Data patches in the browser.  This is a major
 step in supporting PureData in the browser, howver WebPd is currently 'read only'. There is no GUI, and
-no ability to create or edit patches directly in browser.  **PureDataGUI** is a very early stage project to fill this gap
-by allowing users to ulitmately create, save, edit, play, download and upload Pure Data patches directly in the browser.
+no ability to CRUD patches directly in browser.  **PureDataGUI** is a very early stage project to fill this gap,
+that will allow users to create, save, edit, play, download and upload Pure Data patches directly in the browser.
 
 ## Description
 
