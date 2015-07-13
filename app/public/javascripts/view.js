@@ -53,15 +53,27 @@ $(function() {
   }
 
 
-  $(document).ready(function() {
-    var id = newPatch();
-    
-    // Listen for dblclick on the box
-    $('body').dblclick(function(e){
-      addEmptyNode(e.clientX, e.clientY+80);
-    });
-
+  // Init Control Panel Listeners
+  $('#cp-btn-play').click(function () {
+    if (_playPatch) {
+      $('#cp-btn-stop').removeClass('active');
+      $('#cp-btn-play').addClass('active');
+    }
   });
-  
+
+  $('#cp-btn-stop').click(function () {
+    if (_stopPatch()) {
+      $('#cp-btn-play').removeClass('active');
+      $('#cp-btn-stop').addClass('active');
+    }
+  });
+
+  $('#cp-ddm-patch-import a').click(function(e) {
+    //e.preventDefault ();
+    if (_importPatch()) {
+      // Dialog Successfully Imported
+    }
+  });
 });
+
 

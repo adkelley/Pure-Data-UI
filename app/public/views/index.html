@@ -17,6 +17,7 @@
     <link rel="stylesheet"  href="stylesheets/styles.css">
     <!-- Model/View Javascripts -->
     <script src="javascripts/model.js"></script>
+    <script src="javascripts/ctrl_panel.js"></script>
     <script src="javascripts/view.js"></script>
   </head>
 </head>
@@ -41,17 +42,21 @@
   <nav class="navbar navbar-default navbar-lower" role="navigation">
     <div class="container">
       <div class="collapse navbar-collapse navbar-right">
+        <button type="button" class="btn btn-default navbar-btn" id="cp-btn-stop">Stop</button>
+        <button type="button" class="btn btn-default navbar-btn" id="cp-btn-play">Play</button>
         <div class="btn-group">
           <button type="button" class="btn btn-default navbar-btn dropdown-toggle" data-toggle="dropdown">
             Patch <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">New</a></li>
-            <li><a href="#">Edit</a></li>
-            <li><a href="#">Delete</a></li>
-            <li><a href="/patch/import">Import</a></li>
+            <li id="cp-ddm-patch-new"><a href="#">New</a></li>
+            <li id="cp-ddm-patch-open"><a href="#">Open</a><li>
+            <li id="cp-ddm-patch-import"><a href="#">Import</a></li>
             <li class="divider"></li>
-            <li><a href="#">Save</a></li>
+            <li id="cp-ddm-patch-new"><a href="#">Edit</a></li>
+            <li id="cp-ddm-patch-delete"><a href="#">Delete</a></li>
+            <li class="divider"></li>
+            <li id="cp-ddm-patch-save"><a href="#">Save</a></li>
           </ul>
         </div>
       </div>

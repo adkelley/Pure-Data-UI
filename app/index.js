@@ -36,11 +36,6 @@ app.get('/', function(req, res) {
 });
 
 // Patch file upload
-app.get('/patch/import', function(req, res) {
-  var uploadPath = path.join(views, "_upload.html");
-  res.sendFile(uploadPath);
-});
-
 app.post('/api/patch', function (req, res) {
   if (fileUpload) {
     console.log(req.files);

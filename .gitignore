@@ -4,6 +4,7 @@ reference
 node_modules
 bower_components
 docs
+uploads
 
 # Environment
 .env
