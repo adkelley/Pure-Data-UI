@@ -1,11 +1,9 @@
 var _playPatch = function() {
   Pd.start();
-  return (isPatchLoaded()) ? true : false;
 };
 
 var _stopPatch = function () {
   Pd.stop();
-  return (isPatchPlaying()) ? true : false;
 };
 
 var uploadForm = "<form id='uploadForm' enctype='multipart/form-data'" +
@@ -41,24 +39,26 @@ var _importPatch = function () {
   });
 }
 
-var _loadDemoPatch = function () {
-  var pathToFile = 'main.pd';
+var _loadPatch = function (pathToFile) {
   var patch;
-  // $.get(pathToFile, function(mainStr) {
-  //   patch = Pd.loadPatch(mainStr);
-  //   $('#cp-btn-play').fadeIn(200);
-  //   $('#cp-btn-play').fadeIn(200);
-  // })
-  $.ajax({
-    url: pathToFile,
-    async: true,
-    dataType: 'text',
-    success: function(data) {
-    patch = Pd.loadPatch(data);
-    $('#cp-btn-play').fadeIn(200);
-    $('#cp-btn-play').fadeIn(200);
-    }
-  });
+  var result = $.get(pathToFile, function(mainStr) {
+    patch = Pd.loadPatch(mainStr);
+  })
+    .done(function() {
+      if (patch) {
+        console.log("Patch successfully loaded")
+      } else {
+        result = false;
+      }
+    })
+    .fail(function() {
+      console.log("Something went wrong with file load")
+    });
   
-  console.log(patch);
+  // Give a little time for patch to initialize
+  // before returning
+  return (window.setTimeout(
+    function() {
+      return patch;
+    }, 200));
 }
