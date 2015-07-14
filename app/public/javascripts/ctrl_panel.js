@@ -1,8 +1,10 @@
 var _playPatch = function() {
+  Pd.start();
   return (isPatchLoaded()) ? true : false;
 };
 
 var _stopPatch = function () {
+  Pd.stop();
   return (isPatchPlaying()) ? true : false;
 };
 
@@ -37,6 +39,26 @@ var _importPatch = function () {
     ],
     title: "Upload Patch"
   });
+}
+
+var _loadDemoPatch = function () {
+  var pathToFile = 'main.pd';
+  var patch;
+  // $.get(pathToFile, function(mainStr) {
+  //   patch = Pd.loadPatch(mainStr);
+  //   $('#cp-btn-play').fadeIn(200);
+  //   $('#cp-btn-play').fadeIn(200);
+  // })
+  $.ajax({
+    url: pathToFile,
+    async: true,
+    dataType: 'text',
+    success: function(data) {
+    patch = Pd.loadPatch(data);
+    $('#cp-btn-play').fadeIn(200);
+    $('#cp-btn-play').fadeIn(200);
+    }
+  });
   
-  return true;
+  console.log(patch);
 }

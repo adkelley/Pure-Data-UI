@@ -70,10 +70,15 @@ $(function() {
 
   $('#cp-ddm-patch-import a').click(function(e) {
     //e.preventDefault ();
-    if (_importPatch()) {
-      // Dialog Successfully Imported
-    }
+    _importPatch();
   });
+
+  $('#nav-demo a').click(function(e) {
+    $('#nav-demo').addClass('active');
+    $('#cp-btn-play').fadeOut();
+    $('#cp-btn-stop').fadeOut();
+    _loadDemoPatch();
+  })
 });
 
 
