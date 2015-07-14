@@ -84,10 +84,33 @@ app.post("/users", function(req, res) {
       });
   } else {
     console.log("validateEmail() or validatePassword() failed");
-    res.redirect("/register_error");
+    // TODO: How to fire an error message into the modal?
+    // this doesn't work '$showHeaderError('register');
+    //res.redirect("/register_error");
+    res.redirect('/');
   }
 
 });
+
+// Login
+app.post("/login", function(req, res) {
+  var user = req.body.user;
+  console.log("post()", "/login", user);
+
+  db.User
+    .authenticate(user,
+                  function (err, user) {
+                    if (!err) {
+                      req.login(user);
+                      res.redirect("/");
+                    } else {
+                      // TODO: How to fire an error message into the modal?
+                      //res.redirect("/login_error");
+                      //res.redirect("/");
+                    }
+                  })
+});
+
 
 // Patch file upload
 app.post('/api/patch', function (req, res) {

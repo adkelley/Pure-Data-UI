@@ -28,6 +28,15 @@ body{
     color: #fff;
 }
 
+
+.hidden {
+    visibility: hidden;
+}
+
+.visible {
+    visibility: visible;
+}
+
 .ui-autocomplete-input {
     border: 1px solid #346789;
     box-shadow: 2px 2px 19px #aaa;

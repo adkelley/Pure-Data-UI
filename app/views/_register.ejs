@@ -2,10 +2,22 @@
 <div class="modal fade" tabindex="-1" role="dialog" id="register" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
+
+      <div id="register-header" class="modal-header visible">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">Register</h4>
       </div>
+
+      <div id="register-header-error" class="model-header hidden">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Register Error:</h4>
+        <div class="alert alert-danger" role="alert">
+          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+          <span class="sr-only">Error:</span>
+          Incorrect email or passwords don't match. Please try again. 
+       </div>
+      </div>
+
       <div class="modal-body">
         <!-- The form is placed inside the body of modal -->
         <form id="loginForm" method="POST" action="/users" class="form-horizontal">

@@ -47,9 +47,18 @@ $(function() {
 
   // Listeners
 
-  var newPatch = function () {
-    // Draw an object box
-    var id = addEmptyNode(25, 25);
+  // var newPatch = function () {
+  //   // Draw an object box
+  //   var id = addEmptyNode(25, 25);
+  // }
+
+  // Make error message visible in a Modal header by removing
+  // hidden from class
+  var $showHeaderError = function (id) {
+    $('#'+id+'header').removeClass('visible');
+    $('#'+id+'header').addClass('hidden');
+    $('#'+id+'header-error').removeClass('hidden');
+    $('#'+id+'header-error').addClass('visible');
   }
 
   // Remove Play/Stop until Patch Data loaded by user
