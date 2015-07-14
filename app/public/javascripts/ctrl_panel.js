@@ -1,9 +1,9 @@
 var _playPatch = function() {
-  return (isPatchLoaded()) ? true : false;
+  Pd.start();
 };
 
 var _stopPatch = function () {
-  return (isPatchPlaying()) ? true : false;
+  Pd.stop();
 };
 
 var uploadForm = "<form id='uploadForm' enctype='multipart/form-data'" +
@@ -37,6 +37,28 @@ var _importPatch = function () {
     ],
     title: "Upload Patch"
   });
+}
+
+var _loadPatch = function (pathToFile) {
+  var patch;
+  var result = $.get(pathToFile, function(mainStr) {
+    patch = Pd.loadPatch(mainStr);
+  })
+    .done(function() {
+      if (patch) {
+        console.log("Patch successfully loaded")
+      } else {
+        result = false;
+      }
+    })
+    .fail(function() {
+      console.log("Something went wrong with file load")
+    });
   
-  return true;
+  // Give a little time for patch to initialize
+  // before returning
+  return (window.setTimeout(
+    function() {
+      return patch;
+    }, 200));
 }

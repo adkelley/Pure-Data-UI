@@ -52,28 +52,50 @@ $(function() {
     var id = addEmptyNode(25, 25);
   }
 
-
+  // Remove Play/Stop until Patch Data loaded by user
+  $('#cp-btn-play').fadeOut();
+  $('#cp-btn-stop').fadeOut();
+  
   // Init Control Panel Listeners
   $('#cp-btn-play').click(function () {
-    if (_playPatch) {
-      $('#cp-btn-stop').removeClass('active');
-      $('#cp-btn-play').addClass('active');
-    }
+    $('#cp-btn-stop').removeClass('active');
+    $('#cp-btn-play').addClass('active');
+    _playPatch();
   });
 
   $('#cp-btn-stop').click(function () {
-    if (_stopPatch()) {
-      $('#cp-btn-play').removeClass('active');
-      $('#cp-btn-stop').addClass('active');
-    }
+    $('#cp-btn-play').removeClass('active');
+    $('#cp-btn-stop').addClass('active');
+    _stopPatch();
   });
 
   $('#cp-ddm-patch-import a').click(function(e) {
     //e.preventDefault ();
-    if (_importPatch()) {
-      // Dialog Successfully Imported
+    pathToFile = _importPatch();
+    if (pathToFile) {
+      if (_loadPatch(pathToFile)) {
+        $('#cp-btn-play').fadeIn(200);
+        $('#cp-btn-stop').fadeIn(200);
+      } else {
+        // Message that the demo failed to load
+        console.log("Something went wrong!");
+      }
+    } else {
+      console.log("Something went wrong!");
     }
   });
+
+  $('#nav-demo a').click(function(e) {
+    var pathToFile = 'main.pd';
+    $('#nav-demo').addClass('active');
+    if (_loadPatch(pathToFile)) {
+      $('#cp-btn-play').fadeIn(200);
+      $('#cp-btn-stop').fadeIn(200);
+    } else {
+      // Message that the demo failed to load
+      console.log("demo failed!");
+    }
+  })
 });
 
 
