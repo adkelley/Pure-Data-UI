@@ -1,0 +1,36 @@
+<!-- Login modal -->
+<div class="modal fade" tabindex="-1" role="dialog" id="login" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Log In</h4>
+      </div>
+      <div class="modal-body">
+        <!-- The form is placed inside the body of modal -->
+        <form id="loginForm" method="POST" action="/login" class="form-horizontal">
+          <div class="form-group">
+            <label class="col-xs-3 control-label">Email</label>
+            <div class="col-xs-5">
+              <input type="email" class="form-control" name="user[email]" placeholder="e.g., dana.scully@fbi.gov" />
+            </div>
+          </div>
+
+           <div class="form-group">
+            <label class="col-xs-3 control-label">Password</label>
+            <div class="col-xs-5">
+              <input type="password" class="form-control" name="user[password]" placeholder="e.g., ******"/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-xs-5 col-xs-offset-3">
+              <button type="submit" class="btn btn-primary">Login</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+          </div>
+        </form>  
+      </div>
+    </div>
+  </div>
+</div>
