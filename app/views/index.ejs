@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Pure Data GUI</title>
+    <!— JQuery/JQueryUI local —>
+    <script src="jquery/dist/jquery.js"></script>
+    <script src="jquery-ui/jquery-ui.js"></script>
+    <link rel="stylesheet" href="jquery-ui/themes/smoothness/jquery-ui.css">
+    <!— Bootstrap local —>
+    <script src="bootstrap/dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.css">
+    <!-- WebPd -->
+    <script src="webpd/dist/webpd-latest.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet"  href="stylesheets/styles.css">
+    <!-- Model/View Javascripts -->
+    <script src="javascripts/model.js"></script>
+    <script src="javascripts/ctrl_panel.js"></script>
+    <script src="javascripts/view.js"></script>
+  </head>
+</head>
+<body>
+  
+  <div class="nav-divider">
+  </div>
+
+  <%- include _header.ejs %>  
+  <%- include _ctrl_panel.ejs %>
+  <%- include _register.ejs %>
+
+  <div id="pdCanvas">
+  </div>
+</body>
+</html>
