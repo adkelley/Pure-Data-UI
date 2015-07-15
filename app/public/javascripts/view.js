@@ -97,14 +97,12 @@ $(function() {
   $('#nav-demo a').click(function(e) {
     var pathToFile = 'main.pd';
     $('#nav-demo').addClass('active');
-    if (_loadPatch(pathToFile)) {
-      $('#cp-btn-play').fadeIn(200);
-      $('#cp-btn-stop').fadeIn(200);
-    } else {
-      // Message that the demo failed to load
-      console.log("demo failed!");
-    }
-  })
+    _loadPatch(pathToFile)
+    //Todo: find a way to determine if
+    // patch loaded successfully!
+    $('#cp-btn-play').fadeIn(200);
+    $('#cp-btn-stop').fadeIn(200);
+  });
 });
 
 

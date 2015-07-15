@@ -40,25 +40,22 @@ var _importPatch = function () {
 }
 
 var _loadPatch = function (pathToFile) {
-  var patch;
-  var result = $.get(pathToFile, function(mainStr) {
+  var patch, patchData;
+
+  $.get(pathToFile, function(mainStr) {
     patch = Pd.loadPatch(mainStr);
+    patchData = mainStr;
   })
     .done(function() {
       if (patch) {
+        result = true;
+        $('#svg').html(pdfu.renderSvg(pdfu.parse(patchData), {svgFile: false, ratio: 1.5}))
         console.log("Patch successfully loaded")
       } else {
-        result = false;
+        console.log("Patch did not load");
       }
     })
     .fail(function() {
-      console.log("Something went wrong with file load")
+      console.log("Something went wrong with loading the patch");
     });
-  
-  // Give a little time for patch to initialize
-  // before returning
-  return (window.setTimeout(
-    function() {
-      return patch;
-    }, 200));
 }
