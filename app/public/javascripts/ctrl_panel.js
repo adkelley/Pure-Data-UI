@@ -7,7 +7,7 @@ var _stopPatch = function () {
 };
 
 var uploadForm = "<form id='uploadForm' enctype='multipart/form-data'" +
-      "method='post' action='/api/patch'>" +
+      "method='post' action='/api/import-patch'>" +
       "<input type='file' name='patch' />" +
       "<button type='submit' form='uploadForm'>Upload</button></form>";
 

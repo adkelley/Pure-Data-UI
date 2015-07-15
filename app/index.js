@@ -113,9 +113,10 @@ app.post("/login", function(req, res) {
 
 
 // Patch file upload
-app.post('/api/patch', function (req, res) {
+app.post('/api/import-patch', function (req, res) {
   if (fileUpload) {
-    console.log(req.files);
+    var files = req.files;
+    console.log("post()", "/api/import-patch", files);
     //req.flash('test', 'it worked');
     // res.redirect('/test');
     //res.end("File uploaded");

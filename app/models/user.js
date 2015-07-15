@@ -17,6 +17,7 @@ var userSchema = new mongoose.Schema({
     type: String,
     required: true
   }
+  
 });
 
 var bcrypt = require("bcrypt");
