@@ -1,4 +1,6 @@
-module.exports = function(req, res, next) {
+db = require('../models');
+
+var loginHelpers = function(req, res, next) {
 
   req.login = function (user) {
     req.session.userId = user._id;
@@ -23,6 +25,4 @@ module.exports = function(req, res, next) {
 
 };
 
-
-
-
+module.exports = loginHelpers;

@@ -1,4 +1,5 @@
-var mongoose = require("mongoose");
+var mongoose = require("mongoose"),
+    bcrypt = require('bcrypt');
 
 var userSchema = new mongoose.Schema({
   username: {
@@ -16,11 +17,10 @@ var userSchema = new mongoose.Schema({
   passwordDigest: {
     type: String,
     required: true
-  }
+  },
+  patches: []
   
 });
-
-var bcrypt = require("bcrypt");
 
 var confirm = function(password, passwordCon) {
   return password = passwordCon;

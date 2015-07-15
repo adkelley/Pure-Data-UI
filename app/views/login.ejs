@@ -1,0 +1,26 @@
+<!doctype html>
+
+<% include partials/head %>
+
+<% include partials/header %>
+
+<div class="col-xs-offset-3 col-xs-6">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <form method="post" action="/login">
+        <div class="input-group">
+          <label for="inputEmail" class="control-label">Email</label>
+          <input type="email" class="form-control" placeholder="Email" name="user[email]" data-error="Invalid email address" required>
+          <div class="help-block with-errors"></div>
+        </div>
+        <br>
+        <div class="input-group">
+          <label for="inputPassword" class="control-label">Password</label>
+          <input type="password" class="form-control" placeholder="Password" name="user[password]">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary btn-block">Login</button>
+      </form>
+    </div>
+  </div>
+</div>

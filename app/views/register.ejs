@@ -1,0 +1,45 @@
+<!doctype html>
+
+<% include partials/head %>
+
+<% include partials/header %>
+
+<div class="col-xs-offset-3 col-xs-6">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form method="post" action="/users" data-toggle="validator" role="form">
+                <div class="form-inline row">
+                    <div class="form-group col-sm-6">
+                        <label for="inputUserName" class="control-label">User Name</label>
+                        <input type="text" class="form-control" id="inputFirstName" placeholder="dana" name="user[username]" required>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail" class="control-label">Email</label>
+                    <input type="email" class="form-control" id="inputEmail" placeholder="dana.scully@fbi.gov" data-error="That email address is invalid" name="user[email]" required>
+                    <div class="help-block with-errors"></div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword" class="control-label">Password</label>
+                    <div class="form-inline row">
+                        <div class="form-group col-sm-6">
+                            <input type="password" data-minlength="6" class="form-control" id="inputPassword" placeholder="Password" name="user[password]" required>
+                            <span class="help-block">Minimum of 6 characters</span>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <input type="password" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm" name="user[password_confirmation]" required>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<% include partials/footer %>
+
