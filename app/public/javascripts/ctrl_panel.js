@@ -47,7 +47,6 @@ var _loadPatch = function (pathToFile) {
     patchData = mainStr;
   })
     .done(function() {
-      debugger;
       if (patch) {
         result = true;
         $('#pdCanvas').html(pdfu.renderSvg(pdfu.parse(patchData), {svgFile: false, ratio: 1.5}))

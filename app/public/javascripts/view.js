@@ -61,10 +61,11 @@ $(function() {
     $('#'+id+'header-error').addClass('visible');
   }
 
-  // Remove Play/Stop until Patch Data loaded by user
+  // Remove Patch Panel controls until Patch Data loaded by user
   $('#pp-btn-play').fadeOut();
   $('#pp-btn-stop').fadeOut();
   $('#pp-btn-patch').fadeOut();
+  $('#pp-btn-demo').fadeOut();
   
   // Init Patch Panel Listeners
   $('#pp-btn-play').click(function () {
@@ -101,6 +102,10 @@ $(function() {
     $('#nav-demo').addClass('active');
     $('.no-patch').remove();
     $('.alert').remove();
+    // $('#pp-btn-patch').remove();
+    // $('#pp-btn-demo').add();
+    $('#pp-btn-patch').fadeOut();
+    $('#pp-btn-demo').fadeIn();
     _loadPatch(pathToFile)
     //Todo: find a way to determine if
     // patch loaded successfully!
@@ -118,7 +123,10 @@ $(function() {
     //_loadPatch(pathToFile)
     //Todo: find a way to determine if
     // patch loaded successfully!
-    $('#pp-btn-patch').fadeIn(200);
+    $('#pp-btn-demo').fadeOut();
+    $('#pp-btn-patch').fadeIn();
+    // $('#pp-btn-demo').remove();
+    // $('#pp-btn-patch').add();
     // Todo: see if a patch is loaded.  If so
     // then don't fade the buttons in.  Keep
     // them visible
