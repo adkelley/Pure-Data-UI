@@ -96,20 +96,32 @@ $(function() {
   });
 
   $('#nav-demo a').click(function(e) {
-    e.preventDefault ();
-    // $('body').load('/patch', function(req, res) {
-    //    console.log('canvas rendered');
-    // });
-    // $.get('/patch', function(req, res) {
-    //   console.log('canvas rendered');
-    // })
     var pathToFile = 'main.pd';
+    $('#nav-patch').removeClass('active');
     $('#nav-demo').addClass('active');
     $('.no-patch').remove();
     $('.alert').remove();
     _loadPatch(pathToFile)
     //Todo: find a way to determine if
     // patch loaded successfully!
+    $('#pp-btn-play').fadeIn(200);
+    $('#pp-btn-stop').fadeIn(200);
+    
+  });
+
+  $('#nav-patch a').click(function(e) {
+    var pathToFile = 'main.pd';
+    $('#nav-patch').addClass('active');
+    $('#nav-demo').removeClass('active');
+    $('.no-patch').remove();
+    $('.alert').remove();
+    //_loadPatch(pathToFile)
+    //Todo: find a way to determine if
+    // patch loaded successfully!
+    $('#pp-btn-patch').fadeIn(200);
+    // Todo: see if a patch is loaded.  If so
+    // then don't fade the buttons in.  Keep
+    // them visible
     $('#pp-btn-play').fadeIn(200);
     $('#pp-btn-stop').fadeIn(200);
     
