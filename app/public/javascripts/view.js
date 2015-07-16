@@ -1,7 +1,7 @@
 $(function() {
 
 // initialize globalPatch to empty patch;
-var globalPatch = Pd.createPatch();
+var _globalPatch = Pd.createPatch();
   
 var _playPatch = function() {
   Pd.start();
@@ -18,7 +18,7 @@ var _loadPatch = function () {
   // error if the current patchhas already been stopped.
   // Workaround is not to stop the patch before choosing
   // another patch. 
-  Pd.destroyPatch(globalPatch);
+  Pd.destroyPatch(_globalPatch);
 
   var pathToFiles = [];
   for (var i=0; i<arguments.length; i++) {
@@ -26,9 +26,18 @@ var _loadPatch = function () {
   }
 
   $.get(pathToFiles[0], function(mainStr) {
+      // handle one subpatch for now
     if (pathToFiles.length > 1) {
+      $.get(pathToFiles[1], function(pinkStr) {
+        Pd.registerAbstraction('pink~', pinkStr);
+        _globalPatch = Pd.loadPatch(mainStr);
+        Pd.send(_globalPatch.patchId + '-diameter', [20])
+        $('#pdCanvas').html(pdfu.renderSvg(pdfu.parse(mainStr), {svgFile: false, ratio: 1.5}))
+        $('#pp-btn-play').fadeIn(200);
+        $('#pp-btn-stop').fadeIn(200);
+      });
     } else {
-      globalPatch = Pd.loadPatch(mainStr);
+      _globalPatch = Pd.loadPatch(mainStr);
       $('#pdCanvas').html(pdfu.renderSvg(pdfu.parse(mainStr), {svgFile: false, ratio: 1.5}))
       $('#pp-btn-play').fadeIn(200);
       $('#pp-btn-stop').fadeIn(200);
@@ -93,8 +102,10 @@ var _loadPatch = function () {
     _loadPatch(pathToFile);
   });
   $('#pp-ddm-demo-d5').click(function(e){
-    var pathToFile = 'gui-controls/pd/main.pd';
-    _loadPatch(pathToFile);
+    var pathToFile = [];
+    pathToFile.push('abstractions/pd/main.pd');
+    pathToFile.push('abstractions/pd/pink~.pd');
+    _loadPatch(pathToFile[0], pathToFile[1]);
   });
 
   // Listen for Patch Menu Clicks
