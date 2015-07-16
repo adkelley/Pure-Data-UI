@@ -1,0 +1,40 @@
+<!-- views/partials/ctrl_panel -->
+
+<!doctype html>
+<nav class="navbar navbar-default navbar-lower" role="navigation">
+  <div class="container">
+    <div class="collapse navbar-collapse navbar-right">
+      <button type="button" class="btn btn-default navbar-btn" id="pp-btn-stop">Stop</button>
+      <button type="button" class="btn btn-default navbar-btn" id="pp-btn-play">Play</button>
+      <div class="btn-group">
+        <button type="button" id="pp-btn-patch" class="btn btn-default navbar-btn dropdown-toggle" data-toggle="dropdown">
+          Patch <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <li id="pp-ddm-patch-new"><a href="#">New</a></li>
+          <li id="pp-ddm-patch-open"><a href="#">Open</a><li>
+          <li id="pp-ddm-patch-import"><a href="patch/import">Import</a></li>
+          <li class="divider"></li>
+          <li id="pp-ddm-patch-new"><a href="#">Edit</a></li>
+          <li id="pp-ddm-patch-delete"><a href="#">Delete</a></li>
+          <li class="divider"></li>
+          <li id="pp-ddm-patch-save"><a href="#">Save</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+  <div class='container-fluid'>
+    <div class='row'>
+      <% for (var key in flash) { %>
+      <% if (flash[key].length) { %>
+      <div class='col-xs-offset-1 col-xs-10'>
+        <div class='alert alert-<%= key %> alert-dismissible' role='alert'>
+          <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+          <strong><%= (key === 'danger' ? 'error' :key).toUpperCase() %>:</strong> <%= flash[key] %>
+        </div>
+      </div>
+    </div>
+    <% } %>
+    <% } %>
+

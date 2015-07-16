@@ -62,46 +62,57 @@ $(function() {
   }
 
   // Remove Play/Stop until Patch Data loaded by user
-  $('#cp-btn-play').fadeOut();
-  $('#cp-btn-stop').fadeOut();
+  $('#pp-btn-play').fadeOut();
+  $('#pp-btn-stop').fadeOut();
+  $('#pp-btn-patch').fadeOut();
   
-  // Init Control Panel Listeners
-  $('#cp-btn-play').click(function () {
-    $('#cp-btn-stop').removeClass('active');
-    $('#cp-btn-play').addClass('active');
+  // Init Patch Panel Listeners
+  $('#pp-btn-play').click(function () {
+    $('#pp-btn-stop').removeClass('active');
+    $('#pp-btn-play').addClass('active');
     _playPatch();
   });
 
-  $('#cp-btn-stop').click(function () {
-    $('#cp-btn-play').removeClass('active');
-    $('#cp-btn-stop').addClass('active');
+  $('#pp-btn-stop').click(function () {
+    $('#pp-btn-play').removeClass('active');
+    $('#pp-btn-stop').addClass('active');
     _stopPatch();
   });
 
-  $('#cp-ddm-patch-import a').click(function(e) {
+  $('#pp-ddm-patch-import a').click(function(e) {
     //e.preventDefault ();
-    pathToFile = _importPatch();
-    if (pathToFile) {
-      if (_loadPatch(pathToFile)) {
-        $('#cp-btn-play').fadeIn(200);
-        $('#cp-btn-stop').fadeIn(200);
-      } else {
-        // Message that the demo failed to load
-        console.log("Something went wrong!");
-      }
-    } else {
-      console.log("Something went wrong!");
-    }
+    // pathToFile = _importPatch();
+    // if (pathToFile) {
+    //   if (_loadPatch(pathToFile)) {
+    //     $('#cp-btn-play').fadeIn(200);
+    //     $('#cp-btn-stop').fadeIn(200);
+    //   } else {
+    //     // Message that the demo failed to load
+    //     console.log("Something went wrong!");
+    //   }
+    // } else {
+    //   console.log("Something went wrong!");
+    // }
   });
 
   $('#nav-demo a').click(function(e) {
+    e.preventDefault ();
+    // $('body').load('/patch', function(req, res) {
+    //    console.log('canvas rendered');
+    // });
+    // $.get('/patch', function(req, res) {
+    //   console.log('canvas rendered');
+    // })
     var pathToFile = 'main.pd';
     $('#nav-demo').addClass('active');
+    $('.no-patch').remove();
+    $('.alert').remove();
     _loadPatch(pathToFile)
     //Todo: find a way to determine if
     // patch loaded successfully!
-    $('#cp-btn-play').fadeIn(200);
-    $('#cp-btn-stop').fadeIn(200);
+    $('#pp-btn-play').fadeIn(200);
+    $('#pp-btn-stop').fadeIn(200);
+    
   });
 });
 

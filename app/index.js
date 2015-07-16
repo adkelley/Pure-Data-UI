@@ -29,27 +29,29 @@ app.use(session({
 app.use(bodyParser.urlencoded({extended: true}));
 
 // Configure multer for uploading files
-var fileUpload = false;
-app.use(multer({dest: './uploads',
-                rename: function (fieldname, filename) {
-                  return filename+Date.now();
-                },
-                onFileUploadStart: function (file) {
-                  console.log(file.originalname + ' is starting ...')
-                },
-                onFileUploadComplete: function (file) {
-                  console.log(file.fieldname + 'uploaded to ' + file.path)
-                  fileUpload = true;
-                }
-               }));
+// var fileUpload = false;
+// app.use(multer({dest: './uploads',
+//                 rename: function (fieldname, filename) {
+//                   return filename+Date.now();
+//                 },
+//                 onFileUploadStart: function (file) {
+//                   console.log(file.originalname + ' is starting ...')
+//                 },
+//                 onFileUploadComplete: function (file) {
+//                   console.log(file.fieldname + 'uploaded to ' + file.path)
+//                   fileUpload = true;
+//                 }
+//                }));
 
 // ejs template engine
 app.set('view engine', 'ejs');
 // js and css files
-app.use(express.static("app/public"));
-app.use(express.static("bower_components"));
+//app.use(express.static("app/public"));
+app.use('/static', express.static('bower_components'),
+                                  express.static('app/vendor'),
+                                  express.static("app/public"));
 // 3rd party libraries
-app.use(express.static("app/vendor"));
+//app.use(express.static("app/vendor"));
 // demo directory
 app.use(express.static("app/demo"));
 // connect to flash
