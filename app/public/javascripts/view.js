@@ -13,9 +13,12 @@ var _stopPatch = function () {
 
 var _loadPatch = function () {
   // kill the current patch;
-  debugger;
+  // TBD: Fix a bug in the vendor library webpdlatest
+  // In method this.destroyOscillator that throws an
+  // error if the current patchhas already been stopped.
+  // Workaround is not to stop the patch before choosing
+  // another patch. 
   Pd.destroyPatch(globalPatch);
-  debugger;
 
   var pathToFiles = [];
   for (var i=0; i<arguments.length; i++) {
@@ -23,7 +26,6 @@ var _loadPatch = function () {
   }
 
   $.get(pathToFiles[0], function(mainStr) {
-    //debugger;
     if (pathToFiles.length > 1) {
     } else {
       globalPatch = Pd.loadPatch(mainStr);
