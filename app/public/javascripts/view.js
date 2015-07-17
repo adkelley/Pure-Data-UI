@@ -1,16 +1,90 @@
 $(function() {
 
 // initialize globalPatch to empty patch;
-var _globalPatch = Pd.createPatch();
+var webpdPatch;
   
-var _playPatch = function() {
+var _startPatch = function() {
+  $('#pp-btn-stop').removeClass('active');
+  $('#pp-btn-play').addClass('active');
   Pd.start();
 };
 
 var _stopPatch = function () {
+  $('#pp-btn-stop').addClass('active');
+  $('#pp-btn-play').removeClass('active');
   Pd.stop();
 };
 
+var _resetObjFields = function() {
+  var numFields = 5;
+  $('.obj-field').removeClass('hidden');
+  for (var i=0; i<numFields; i++) {
+    $('.pp-obj'+i).val('Obj'+i);
+  }
+}
+
+// Display first 5 messages into patch panel
+var _getPatchMessages = function(){
+  var patch = webpdPatch;
+  var objIndex = 0, divClass,
+      nodeName, msgs = [],
+      dupMsg, i=0, j, numObjs = 5;
+
+  _resetObjFields();
+  while (i<patch.objects.length && objIndex < numObjs) {
+    node = patch.objects[i];
+    switch (node.type) {
+      case 'receive':
+      dupMsg = false;   j = 0;
+      while (!dupMsg && j < msgs.length) {
+        if (node.name === msgs[j]) {
+          dupMsg = true;
+        }
+        j += 1;
+      }
+      debugger;
+      if (!dupMsg) {
+        divClass = '.pp-obj' + objIndex;
+        $(divClass).val(node.name);
+        $(divClass).attr('id', 'obj'+node.id);
+        objIndex += 1;
+        msgs.push(node.name);
+      }
+      default:
+      //console.log('type: ', node.type, 'id: ', node.id);
+      break;
+    }
+    i += 1;
+  }
+//    debugger;
+}
+
+//Listen for Object field inputs
+$('.obj-field').keydown(function(event) {
+  var objId, val, nodeName, floatVal;
+  if (event.keyCode == 13) {
+    event.preventDefault();
+    // get the Object id without 'obj'
+    objId = event.currentTarget.id.substr(3);
+    val = $('#'+event.currentTarget.id).val();
+    nodeName = webpdPatch.objects[objId].name;
+    
+    floatVal = parseFloat(val);
+    Pd.send(nodeName, [floatVal]);
+    return false;
+  }
+});
+
+// debugging
+var _inspectPatch = function(){
+  var patch = webpdPatch;
+  for (var i=0; i<patch.objects.length; i++) {
+    node = patch.objects[i];
+    //console.log(node.type);
+  }
+  debugger;
+}
+  
 var _loadPatch = function () {
   // kill the current patch;
   // TBD: Fix a bug in the vendor library webpdlatest
@@ -18,7 +92,12 @@ var _loadPatch = function () {
   // error if the current patchhas already been stopped.
   // Workaround is not to stop the patch before choosing
   // another patch. 
-  Pd.destroyPatch(_globalPatch);
+  if (webpdPatch) {
+    _stopPatch();
+    delete Pd._glob.patches[webpdPatch.patchId];
+    webpdPatch = null;
+    $('.obj-field').addClass('hidden');
+  }
 
   var pathToFiles = [];
   for (var i=0; i<arguments.length; i++) {
@@ -30,34 +109,28 @@ var _loadPatch = function () {
     if (pathToFiles.length > 1) {
       $.get(pathToFiles[1], function(pinkStr) {
         Pd.registerAbstraction('pink~', pinkStr);
-        _globalPatch = Pd.loadPatch(mainStr);
-        Pd.send(_globalPatch.patchId + '-diameter', [20])
+        webpdPatch = Pd.loadPatch(mainStr);
+        _startPatch();
+        Pd.send(webpdPatch.patchId + '-diameter', [20]);
+        Pd.send(webpdPatch.patchId + '-frequency', [600]);
         $('#pdCanvas').html(pdfu.renderSvg(pdfu.parse(mainStr), {svgFile: false, ratio: 1.5}))
         $('#pp-btn-play').fadeIn(200);
         $('#pp-btn-stop').fadeIn(200);
+        _getPatchMessages();
       });
     } else {
-      _globalPatch = Pd.loadPatch(mainStr);
+      webpdPatch = Pd.loadPatch(mainStr);
       $('#pdCanvas').html(pdfu.renderSvg(pdfu.parse(mainStr), {svgFile: false, ratio: 1.5}))
       $('#pp-btn-play').fadeIn(200);
       $('#pp-btn-stop').fadeIn(200);
+      _startPatch();
+      _getPatchMessages();
     }
   })
-  // TBD: Better error checking
-  // .done(function() {
-  //   if (patch) {
-  //     result = true;
-  //     console.log("Patch successfully loaded")
-  //   } else {
-  //     console.log("Patch did not load");
-  //   }
-  // })
-  // .fail(function() {
-  //   console.log("Something went wrong with loading the patch");
-  // });
 }
 
-  // Remove Patch Panel controls until Patch Data loaded by user
+  // Remove Patch Panel controls & fields until Patch Data loaded by user
+  $('.obj-field').addClass('hidden');
   $('#pp-btn-play').fadeOut();
   $('#pp-btn-stop').fadeOut();
   $('#pp-btn-patch').fadeOut();
@@ -65,9 +138,7 @@ var _loadPatch = function () {
   
   // Init Patch Panel Listeners
   $('#pp-btn-play').click(function () {
-    $('#pp-btn-stop').removeClass('active');
-    $('#pp-btn-play').addClass('active');
-    _playPatch();
+    _startPatch();
   });
 
   $('#pp-btn-stop').click(function () {
@@ -76,13 +147,6 @@ var _loadPatch = function () {
     _stopPatch();
   });
 
-  // var loadDemoPatch = function(pathToFile) {
-  //   $('#pp-btn-patch').fadeOut();
-  //   $('#pp-btn-demo').fadeIn();
-  //   _loadPatch(pathToFile)
-  //   $('#pp-btn-play').fadeIn(200);
-  //   $('#pp-btn-stop').fadeIn(200);
-  // }
 
   // Listen for Demo Menu Clicks
   $('#pp-ddm-demo-d1').click(function(e){
@@ -126,18 +190,23 @@ var _loadPatch = function () {
   });
 
   $('#nav-demo a').click(function(e) {
+    $('.object-field').addClass('hidden');  // hide the object fields
     $('#nav-patch').removeClass('active');
     $('#nav-demo').addClass('active');
     $('.no-patch').remove();
     $('.alert').remove();
     $('#pp-btn-demo').fadeIn();
     $('#pp-btn-patch').fadeIn();
-    var pathToFile = 'gui-controls/pd/main.pd';
-    _loadPatch(pathToFile);
+    //var pathToFile = 'gui-controls/pd/main.pd';
+    var pathToFile = [];
+    pathToFile.push('abstractions/pd/main.pd');
+    pathToFile.push('abstractions/pd/pink~.pd');
+    _loadPatch(pathToFile[0], pathToFile[1]);
+    //_loadPatch(pathToFile);
   });
 
   $('#nav-patch a').click(function(e) {
-    var pathToFile = 'main.pd';
+    $('.object-field').addClass('hidden');  // hide the object fields
     $('#nav-patch').addClass('active');
     $('#nav-demo').removeClass('active');
     $('.no-patch').remove();

@@ -36,6 +36,21 @@ body{
     visibility: visible;
 }
 
+.obj-field {
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    text-align: left;
+}
+
+.obj-label {
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 15px;
+}
+
 .ui-autocomplete-input {
     border: 1px solid #346789;
     box-shadow: 2px 2px 19px #aaa;

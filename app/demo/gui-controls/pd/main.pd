@@ -26,9 +26,7 @@
 #X floatatom 182 117 5 0 0 0 - - -;
 #X floatatom 283 500 5 0 0 0 - - -;
 #X msg 283 339 1;
-#X text 360 87 All these controls are absolutely useless \, but they
-are all there just to test that they work and that we have sound at
-the end of the chain...;
+#X text 360 87 GUI Controls;
 #X connect 0 0 19 0;
 #X connect 1 0 6 0;
 #X connect 2 0 1 0;
