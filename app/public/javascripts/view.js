@@ -15,12 +15,17 @@ var _stopPatch = function () {
   Pd.stop();
 };
 
+// var _resetObjFields = function() {
+//   var numFields = 5;
+//   $('.obj-field').removeClass('hidden');
+//   for (var i=0; i<numFields; i++) {
+//     $('.pp-obj'+i).val('Obj'+i);
+//   }
+// }
+
 var _resetObjFields = function() {
-  var numFields = 5;
-  $('.obj-field').removeClass('hidden');
-  for (var i=0; i<numFields; i++) {
-    $('.pp-obj'+i).val('Obj'+i);
-  }
+  $('.obj-field').removeClass('hidden'); // ensure no hidden classes dangling
+  $('.obj-field').addClass('hidden'); // should only be one hidden class now
 }
 
 // Display first 5 messages into patch panel
@@ -45,6 +50,7 @@ var _getPatchMessages = function(){
       //debugger;
       if (!dupMsg) {
         divClass = '.pp-obj' + objIndex;
+        $(divClass).removeClass('hidden'); // make the object field visible
         $(divClass).val(node.name);
         $(divClass).attr('id', 'obj'+node.id);
         objIndex += 1;

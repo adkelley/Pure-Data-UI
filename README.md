@@ -9,12 +9,12 @@ While there have been several desk top implementations of the Pure Data, it is o
 [Sebastien Piquemal](http://funktion.fm/#contact) et. al. have created [WebPd](https://github.com/sebpiq/WebPd)
 using the new [Web Audio](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API) standard.
 
-WebPd is a major step in enabling developers to load and play Pure Data patches on the web using Web Audio.
+**WebPd** is a major step in enabling developers to load and play Pure Data patches on the web using Web Audio.
 **PDGUI** takes the next step by stacking a GUI on top of WebPd to enable users to CRUD their Pure Data patches directly in the browser.
 
-## Description & Status
-The PDGUI project is a very early stage project beginning on July 9, 2015.  Users are able to register and login and play the demo
-examples. Iteraction is limited to sending PD messages to the patch and hearing the results.  The ultimate goal and direction will
+## Description
+PDGUI is a very early stage project that began on July 9, 2015.  Users are able to register and login and play the demo
+examples. Iteraction is limited to sending PD messages to the patch and hearing the resulting changes.  The ultimate goal and direction will
 be to interact with all Pure Data object types, with the ability to upload, create, edit, play, and save Pure Data patches. Check out
 our [PDGUI Trello board](https://trello.com/b/07uE2nVI/pure-data-gui-development) for status of features planned or in progress.
 
@@ -22,6 +22,14 @@ our [PDGUI Trello board](https://trello.com/b/07uE2nVI/pure-data-gui-development
 - MEAN stack sans Angular (i.e, Nodejs, Express, Mongo)
 - WebPD: Web Audio, Pure Data patch parsing and renders
 
+## Installation
+PDGUI uses MongoDB for storing user login information.  Therefore, you should create a .env file in your sample_atlas root directory 
+and add the following lines:
+```
+SECRET=somesecret  // Pick a secret word
+DEV_MONGODB='your local mongodb uri'  //Example: 'mongodb://localhost/sample_atlas'
+PORT = Port #  // Example: PORT = 3000
+```
 ## Documentation
 PDGUI is currently 'Demonstration Mode' only.
 - Login or Register an account
