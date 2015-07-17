@@ -42,7 +42,7 @@ var _getPatchMessages = function(){
         }
         j += 1;
       }
-      debugger;
+      //debugger;
       if (!dupMsg) {
         divClass = '.pp-obj' + objIndex;
         $(divClass).val(node.name);
@@ -56,7 +56,7 @@ var _getPatchMessages = function(){
     }
     i += 1;
   }
-//    debugger;
+//    //debugger;
 }
 
 //Listen for Object field inputs
@@ -82,7 +82,7 @@ var _inspectPatch = function(){
     node = patch.objects[i];
     //console.log(node.type);
   }
-  debugger;
+  //debugger;
 }
   
 var _loadPatch = function () {
