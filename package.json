@@ -36,7 +36,11 @@
     "morgan": "^1.6.1",
     "multer": "^0.1.8",
     "nodemon": "^1.3.7",
+    "sequelize-cli": "^1.7.2",
     "underscore": "^1.8.3"
   },
-  "homepage": "https://github.com/adkelley/PureDataGUI#readme"
+  "production": {
+    "use_env_variable": "DATABASE_URL"
+  },
+  "homepage": "https://github.com/adkelley/Pure-Data-GUI#readme"
 }

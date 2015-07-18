@@ -1,5 +1,6 @@
 var mongoose = require("mongoose");
-var uristring = process.env.PROD_MONGODB || process.env.DEV_MONGODB;
+var uristring = process.env.PROD_MONGODB || process.env.DEV_MONGODB ||
+      "mongodb://localhost/pgdui";
 mongoose.connect(uristring);
 
 module.exports.mongoose = mongoose;

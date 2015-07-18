@@ -1,4 +1,4 @@
-# PDGUI - Creating, editing, playing, and saving Pure Data patches in the browser.
+# PDGUI - creating, editing, playing, and saving Pure Data patches in the browser.
 
 ## Motivation
 Programming computers is hard, and consequently visual programming languages
@@ -23,11 +23,11 @@ our [PDGUI Trello board](https://trello.com/b/07uE2nVI/pure-data-gui-development
 - WebPD: Web Audio, Pure Data patch parsing and renders
 
 ## Installation
-PDGUI uses MongoDB for storing user login information.  Therefore, you should create a .env file in your sample_atlas root directory 
+PDGUI uses MongoDB for storing user login information.  Therefore, you should create a .env file in your pdgui root directory 
 and add the following lines:
 ```
 SECRET=somesecret  // Pick a secret word
-DEV_MONGODB='your local mongodb uri'  //Example: 'mongodb://localhost/sample_atlas'
+DEV_MONGODB='your local mongodb uri'  //Example: 'mongodb://localhost/pdgui'
 PORT = Port #  // Example: PORT = 3000
 ```
 ## Documentation
