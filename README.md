@@ -1,4 +1,4 @@
-# PDGUI - A GUI in the Browser for creating, editing, playing, and saving Pure Data patches.
+# PDGUI - Creating, editing, playing, and saving Pure Data patches in the browser.
 
 ## Motivation
 Programming computers is hard, and consequently visual programming languages
