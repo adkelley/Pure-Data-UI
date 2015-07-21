@@ -8,3 +8,4 @@ uploads
 
 # Environment
 .env
+.DS_Store
